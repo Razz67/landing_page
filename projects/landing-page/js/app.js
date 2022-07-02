@@ -19,7 +19,7 @@
  */
 
 // build the nav
-const menu = document.getElementById("navbar__list");
+const menu = document.getElementById("navbar-list");
 const sections = [...document.querySelectorAll(".section")];
 
 const nav_menu_items = () => {
@@ -28,26 +28,44 @@ const nav_menu_items = () => {
   sections.forEach((section) => {
     const sectionID = section.id;
     const sectionAtrribute = section.dataset.nav;
-    nav_container += `<li> <a class="navbar__menu active" href="#${sectionID}">${sectionAtrribute}</a></li>`;
+    nav_container += `<li> <a class="navbar-menu" href="#${sectionID}">${sectionAtrribute}</a></li>`;
   });
   menu.innerHTML = nav_container;
 };
 nav_menu_items();
 
-// Add active class to nav bar buttons
-
-let active_btn = document.querySelectorAll(".navbar__list a");
-for (let i = 0, length = active_btn.length; i < length; i++) {
-    active_btn[i].onclick = function() {
-        const b = document.querySelector(".navbar__list li.active");
-        if (b) b.classList.remove("active");
-        this.parentNode.classList.add("active");
-    };
+// create active btn on nav list
+const a = document.querySelectorAll(".navbar-menu a");
+for (let i = 0, length = a.length; i < length; i++) {
+  a[i].onclick = function () {
+    let b = document.querySelector(".navbar-menu .activeBtn");
+    if (b) b.classList.remove("activeBtn");
+    this.parentNode.classList.add("activeBtn");
+  };
 }
 
 // Add class 'active' to section when near top of viewport
+const viewportValue = (section) => {
+  return Math.floor(section.getBoundingClientRect().top);
+};
+const removeClass = (section) => {
+  section.classList.remove("active");
+};
 
+const addClass = (inView, section) => {
+  if (inView) {
+    section.classList.add("active");
+  }
+};
 
+const activate = () => {
+  sections.forEach((section) => {
+    const element = viewportValue(section);
+    inviewport = () => element <= 300 && element >= 300;
+  });
+  removeClass(section);
+  addClass(inviewport().section);
+};
 
 // Scroll to anchor ID using scrollTO event
 var topBtn = document.getElementById("topBtn");

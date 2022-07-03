@@ -48,10 +48,12 @@ for (let i = 0, length = a.length; i < length; i++) {
 const viewportValue = (section) => {
   return Math.floor(section.getBoundingClientRect().top);
 };
+// Remove active class from previous section
 const removeClass = (section) => {
   section.classList.remove("active");
 };
 
+// Add active class to section in view
 const addClass = (inView, section) => {
   if (inView) {
     section.classList.add("active");

@@ -17,6 +17,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-size: 16px;
 }
 
 
@@ -29,11 +30,12 @@ body {
 }
 
 
+
 /* Typeography General*/
 h1 {
     font-family: 'Fira Sans', sans-serif;
     font-size: 3em;
-    margin: 2em 1rem;
+    margin-top: 2em;
 }
 
 h2 {
@@ -50,45 +52,49 @@ p {
 
 /* ---- Layout Rules ---- */
 main {
-    /* margin: 10vh 1em 10vh; */
+    margin: 10vh 1em 10vh;
+    overflow: hidden;
 }
 
-/* .main-hero {
+.main-hero {
     min-height: 40vh;
-    padding-top: 3em;
-} */
+    padding-top: 30em;
+    background-color: #cc1;
+}
 
-/* section {
+section {
     position: relative;
-    min-height: 80vh;
-} */
+    overflow: hidden;
+}
 
 
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
-.navbar__menu ul {
-    padding-left: 0;
-    margin: 0;
-    text-align: right;
+.navbar-menu {
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 
-.navbar__menu li {
-    display: inline-block;
-}
-
-.navbar__menu .menu__link {
-    display: block;
-    padding: 1em;
-    font-weight: bold;
+a {
     text-decoration: none;
-    color: #000;
+    color: #fff;
 }
 
-.navbar__menu .menu__link:hover {
-    background: #333;
-    color: #fff;
+a.navbar-menu {
+    background-color: #cc0000;
+    border: 1px solid #660000;
+    border-radius: .25em;
+    margin-bottom: 0.625em;
+    padding: 0.625em;
+
+}
+
+a.navbar-menu:hover {
     transition: ease 0.3s all;
+    background-color: lightblue;
+    color: #000;
 }
 
 /* Header Styles */
@@ -184,7 +190,6 @@ section:nth-of-type(3n + 1) .landing__container::after {
     opacity: 0;
     transition: ease 0.5s all;
 }
-
 
 /* ---- Theme State Rules ---- */
 /* Section Active Styles */

@@ -26,8 +26,9 @@ body {
 /* Typeography General*/
 h1 {
     font-family: 'Fira Sans', sans-serif;
-    font-size: 3em;
+    font-size: 2em;
     margin: 2em 1rem;
+    text-align: center;
 }
 
 @media only screen and (min-width: 35em) {
@@ -40,12 +41,13 @@ h1 {
 h2 {
     border-bottom: 1px solid #cc1;
     font-family: 'Oxygen', Sans-Serif;
-    font-size: 3em;
+    font-size: 2.5em;
     color: #fff;
 }
 
 p {
-    line-height: 1.6em;
+    line-height: 1.3em;
+    padding-top: 0.65em;
     color: #eee;
 }
 
@@ -68,22 +70,20 @@ section {
 /* ---- Module Rules ---- */
 
 /* Navigation Styles*/
-.navbar__menu ul {
-    padding-left: 0;
-    margin: 0;
-    text-align: right;
+.navbar__menu {
+    background: linear-gradient(150deg, rgba(0, 13, 60, 1)0%, rgba(136, 203, 171, 1) 100%);
 }
 
-.navbar__menu li {
-    display: inline-block;
+.navbar__menu ul {
+    text-align: center;
 }
 
 .navbar__menu .menu__link {
     display: block;
     padding: 1em;
-    font-weight: bold;
+    font-weight: 700;
     text-decoration: none;
-    color: #000;
+    color: #fff;
 }
 
 .navbar__menu .menu__link:hover {
@@ -121,9 +121,21 @@ section {
 }
 
 @media only screen and (min-width: 35em) {
+    h1 {
+        font-size: 5em;
+    }
+
     .landing__container {
         max-width: 50em;
         padding: 4em;
+    }
+
+    .navbar__menu li {
+        display: inline-block;
+    }
+
+    #myBtn {
+        display: block;
     }
 }
 
@@ -224,23 +236,22 @@ section.your-active-class .landing__container::after {
 }
 
 /* ********** Styles for scroll to top button ********** */
-#myBtn {
-    display: none;
-    position: fixed;
-    bottom: 20px;
-    right: 30px;
-    z-index: 9;
-    font-size: 0.75em;
-    border: none;
-    outline: none;
+#scroll-btn {
+    opacity: 0;
+    width: 2.5em;
+    height: 2.5em;
+    color: #fff;
     background-color: rgb(118, 226, 9);
-    color: rgba(21, 1, 1, 0.853);
-    cursor: pointer;
-    padding: 1em;
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    border: 2px solid #fff;
     border-radius: 50%;
+    font: bold 1.25em monospace;
+    transition: opacity 0.5s, tranform 0.5s;
 }
 
-#myBtn:hover {
-    background-color: #cc1;
-    color: #000;
+#scroll-btn.show {
+    opacity: 1;
+    transition: opacity 1s, transform 1s;
 }

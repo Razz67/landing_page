@@ -6,28 +6,6 @@ window.addEventListener("DOMContentLoaded", () => {
   const navList = document.getElementById("navbar__list");
   const myButton = document.getElementById("myBtn");
 
-  // ********** Back to top button ***********
-  // Select the button
-  window.onscroll = function () {
-    scrollFunction();
-  };
-// ********** Add scroll funtion **********
-  function scrollFunction() {
-    if (
-      document.body.scrollTop > 50 ||
-      document.documentElement.scrollTop > 50
-    ) {
-      myButton.style.display = "block";
-    } else {
-      myButton.style.display = "none";
-    }
-  }
-  // ****** Scroll to top when button is clicked ******
-  function topFunction() {
-    document.body.scrollTop = 0;
-    document.documentElement.scrollTop = 0;
-  }
-
   // ********* Adding the Nav bar sections **********
   for (const section of sections) {
     const menuItems = document.createElement("li");
@@ -71,4 +49,28 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+
+  const scrollTop = function () {
+    const scrollBtn = document.createElement("button");
+    scrollBtn.innerHTML = "&uarr;";
+    scrollBtn.setAttribute("id", "scroll-btn");
+    document.body.appendChild("scrollBtn");
+
+
+const scrollBtnDisplay = function () {
+  window.scrollY > window.innerHeight
+    ? scrollBtn.classList.remove("show")
+    : scrollBtn.classList.add("show");
+};
+window.addEventListener("scroll", scrollBtnDisplay);
+  const scrollWindow = function () {
+    if (window.scrollY != 0) {
+      setTimeout(function () {
+        window.scrollTo(0, window.scrollY - 50);
+        scrollWindow();
+      }, 10);
+    }
+  };
+  scrollBtn.addEventListener("click", scrollWindow);
+};
 });

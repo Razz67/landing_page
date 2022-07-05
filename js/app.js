@@ -37,14 +37,13 @@ window.addEventListener("DOMContentLoaded", () => {
         const activeNav = document.querySelector(`[href="#${section.id}"]`);
         if (section.className === "your-active-class") {
           section.classList.remove("your-active-class");
-          activeNav.classList.remove("navigation");
+          activeNav.classList.remove("your-active-class");
         }
         if (
           section.getBoundingClientRect().top >= 0 &&
           section.getBoundingClientRect().top < 300
         ) {
           section.classList.add("your-active-class");
-          activeNav.classList.add("navigation");
         }
       }
     }

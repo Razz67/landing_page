@@ -1,14 +1,12 @@
-/* Typography Queuries */
-@media sceen  and (min-width: /*37.5*/500px) { 
+/* Queuries medium to large screens*/
+@media sceen  and (min-width: 37.5) { 
     h1 {
-        font-size: 97em;
+        font-size: 7em;
         margin: 2em 4rem 1em;
     }
-}
 /* Landing Container Queries */
-@media only screen and (min-width: 37.5em) {
     .landing__container {
         max-width: 50em;
         padding: 4em;
     }
-} 
+}

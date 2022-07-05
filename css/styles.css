@@ -24,18 +24,15 @@ body {
 
 
 /* Typeography General*/
-h1 {
-    font-family: 'Fira Sans', sans-serif;
-    font-size: 2em;
-    margin: 2em 1rem;
-    text-align: center;
+.main__hero {
+    margin-top: 15em;
 }
 
-@media only screen and (min-width: 35em) {
-    h1 {
-        font-size: 7em;
-        margin: 2em 4rem 1em;
-    }
+h1 {
+    font-family: "Fira Sans", serif;
+    
+    text-align: center;
+    text-transform: uppercase;
 }
 
 h2 {
@@ -51,23 +48,23 @@ p {
     color: #eee;
 }
 
-.bold {
-    font-weight: 700;
-}
-
 /* ---- Layout Rules ---- */
 main {
     margin: 10vh 1em 10vh;
 }
 
-.main-hero {
-    min-height: 40vh;
-    padding-top: 3em;
+.main__hero {
+    /* min-height: 40vh; */
+    /* padding-top: 4em; */
 }
 
 section {
     position: relative;
-    min-height: 80vh;
+    min-height: 20vh;
+}
+
+#section1 {
+    margin-top: 2em;
 }
 
 

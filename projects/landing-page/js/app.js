@@ -4,7 +4,7 @@ window.addEventListener("DOMContentLoaded", () => {
   // Global Variables
   const sections = document.getElementsByTagName("section");
   const navList = document.getElementById("navbar__list");
-  const myButton = document.getElementById("myBtn");
+  const myButton = document.getElementById("topBtn");
 
   // ********* Adding the Nav bar sections **********
   for (const section of sections) {
@@ -29,7 +29,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ***** This section control all the scrolling behaviour *****
+  // ***** Add Active Class *****
   window.addEventListener("scroll", () => {
     for (const section of sections) {
       const activeSection = document.querySelectorAll(`#${section.id} h2`);
@@ -49,28 +49,22 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
-
-  const scrollTop = function () {
-    const scrollBtn = document.createElement("button");
-    scrollBtn.innerHTML = "&uarr;";
-    scrollBtn.setAttribute("id", "scroll-btn");
-    document.body.appendChild("scrollBtn");
-
-
-const scrollBtnDisplay = function () {
-  window.scrollY > window.innerHeight
-    ? scrollBtn.classList.remove("show")
-    : scrollBtn.classList.add("show");
-};
-window.addEventListener("scroll", scrollBtnDisplay);
-  const scrollWindow = function () {
-    if (window.scrollY != 0) {
-      setTimeout(function () {
-        window.scrollTo(0, window.scrollY - 50);
-        scrollWindow();
-      }, 10);
-    }
+  // ********** Show button when window is scrolled down 100px **********
+  window.onscroll = function () {
+    scrollFunction();
   };
-  scrollBtn.addEventListener("click", scrollWindow);
-};
+
+  function scrollFunction() {
+    if (document.body.scrollTop > 150 || document.documentElement > 150) {
+      myButton.style.display = "block";
+    } else {
+      myButton.style.display = "none";
+    }
+  }
+
+  // ********** On button click, scroll to top of document *********
+  function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+  }
 });

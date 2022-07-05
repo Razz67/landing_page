@@ -51,6 +51,10 @@ p {
     color: #eee;
 }
 
+.bold {
+    font-weight: 700;
+}
+
 /* ---- Layout Rules ---- */
 main {
     margin: 10vh 1em 10vh;
@@ -68,6 +72,19 @@ section {
 
 
 /* ---- Module Rules ---- */
+/* ********** Styles for scroll to top button ********** */
+#topBtn {
+    position: fixed;
+    outline: none;
+    opacity: 50%;
+    width: 2.5em;
+    height: 2.5em;
+    background-color: rgb(118, 226, 9);
+    color: rgb(104, 97, 232);
+    bottom: 10%;
+    right: 5%;
+    border-radius: 50%;
+}
 
 /* Navigation Styles*/
 .navbar__menu {
@@ -233,25 +250,4 @@ section.your-active-class .landing__container::after {
     to {
         transform: rotate(360deg) translate(-1em) rotate(-360deg);
     }
-}
-
-/* ********** Styles for scroll to top button ********** */
-#scroll-btn {
-    opacity: 0;
-    width: 2.5em;
-    height: 2.5em;
-    color: #fff;
-    background-color: rgb(118, 226, 9);
-    position: fixed;
-    bottom: 10%;
-    right: 10%;
-    border: 2px solid #fff;
-    border-radius: 50%;
-    font: bold 1.25em monospace;
-    transition: opacity 0.5s, tranform 0.5s;
-}
-
-#scroll-btn.show {
-    opacity: 1;
-    transition: opacity 1s, transform 1s;
 }

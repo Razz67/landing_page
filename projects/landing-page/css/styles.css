@@ -74,6 +74,7 @@ section {
 /* ---- Module Rules ---- */
 /* ********** Styles for scroll to top button ********** */
 #topBtn {
+    display: none;
     position: fixed;
     outline: none;
     opacity: 50%;
@@ -83,7 +84,12 @@ section {
     color: rgb(104, 97, 232);
     bottom: 10%;
     right: 5%;
+    z-index: 99;
     border-radius: 50%;
+}
+
+#topBtn:hover {
+    background-color: #cc1;
 }
 
 /* Navigation Styles*/

@@ -51,7 +51,7 @@ window.addEventListener("DOMContentLoaded", () => {
   });
   // ********** Show button when window is scrolled down 100px **********
   window.onscroll = function () {
-    scrollFunction();
+    scrollFunction()
   };
 
   function scrollFunction() {

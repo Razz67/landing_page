@@ -250,10 +250,10 @@ section.your-active-class .landing__container::after {
 /* Section Active Styles Keyframe Animations */
 @keyframes rotate {
     from {
-        transform: rotate(0deg) translate(-1em) rotate(0deg);
+        transform: rotate(0deg) translatex(-1em) rotate(0deg);
     }
 
     to {
-        transform: rotate(360deg) translate(-1em) rotate(-360deg);
+        transform: rotate(360deg) translatex(-1em) rotate(-360deg);
     }
 }

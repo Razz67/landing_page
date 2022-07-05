@@ -50,9 +50,11 @@ window.addEventListener("DOMContentLoaded", () => {
     }
   });
 
+  /* Future implementation
+
   // ********** Create Back to top button functions **********
   // ********** Show button when window is scrolled down 100px **********
-  window.onscroll = function () {
+  window.onscroll =  () => {
     scrollFunction()
   };
 
@@ -68,5 +70,5 @@ window.addEventListener("DOMContentLoaded", () => {
   function topFunction() {
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;
-  }
+  }*/
 });

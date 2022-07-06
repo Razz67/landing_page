@@ -1,18 +1,9 @@
-const title = document.getElementById("title");
-const navigationListGenerate = document.getElementById("navbar__list");
-const sectionListGenerate = document.getElementsByTagName("section");
-const debug_message = false;
+/* Global Variables */
+const navList = document.getElementById("navbar__list");
+const sections = document.getElementsByTagName("section");
 /**
  * End Global Variables
- * Start Helper Functions
- *
- */
-
-/**
- * End Helper Functions
- * Begin Main Functions
- *
- */
+ * Begin Main Functions * */
 
 // build the nav
 function buildNavigationMenu() {
@@ -20,42 +11,37 @@ function buildNavigationMenu() {
 
   // build a li element for "Header"
   listItem.innerText = "Home";
-  listItem.className = "navbar__list_item";
+  listItem.className = "navbarItem";
 
   // Add class 'active' to section when near top of viewport;
   listItem.addEventListener("click", function () {
     document.documentElement.scrollTop = 0;
   });
-  navigationListGenerate.appendChild(listItem);
+  navList.appendChild(listItem);
 
   //build a li element for each section
-  for (let item of sectionListGenerate) {
+  for (let item of sections) {
     listItem = document.createElement("li");
-    listItem.className = "navbar__list_item";
+    listItem.className = "navbarItem";
     listItem.innerText = item.dataset.nav;
-    // Scroll to anchor ID using scrollTO event
+
+    // Scroll to anchor ID using scrollIntoView event
     listItem.addEventListener("click", function () {
       item.scrollIntoView({
         behavior: "smooth",
       });
     });
-    navigationListGenerate.appendChild(listItem);
+    navList.appendChild(listItem);
   }
 }
 
-function setActiveOnScroll() {
-  let activeSection = sectionListGenerate[0];
-  let hero_header = document.querySelector(".main__hero");
+function setActive() {
+  let activeSection = sections[0];
+  let hero = document.querySelector(".main__hero");
   let liList = document.querySelectorAll("li");
 
   window.addEventListener("scroll", function (event) {
-    //check if we are scrolling in the header
-    //make "home" active
-    if (isElementInViewport(hero_header)) {
-      if (debug_message) {
-        console.wram(hero_header);
-      }
-
+    if (isElementInViewport(hero)) {
       for (let liItem of liList) {
         if (liItem.innerText === "Home") {
           liItem.classList.add("li_item_active");
@@ -68,12 +54,9 @@ function setActiveOnScroll() {
     } else {
       //Define the active section based on
       // the scrolling event
-      for (let item of sectionListGenerate) {
+      for (let item of sections) {
         if (isElementInViewport(item)) {
           activeSection = item;
-          if (debug_message) {
-            console.wram("Item => ", item);
-          }
           item.classList.add("your-active-class");
         } else {
           if (item.classList.contains("your-active-class")) {
@@ -88,9 +71,6 @@ function setActiveOnScroll() {
       for (let liItem of liList) {
         if (liItem.innerText === activeSection.dataset.nav) {
           liItem.classList.add("li_item_active");
-          if (debug_message) {
-            console.log("liItem is: ", liItem);
-          }
         } else {
           if (liItem.classList.contains("li_item_active")) {
             liItem.classList.remove("li_item_active");
@@ -101,10 +81,9 @@ function setActiveOnScroll() {
   });
 }
 
-//check if the input element(el) is in the view port
-// returns true or false
-function isElementInViewport(el) {
-  var element = el.getBoundingClientRect();
+//check if the section is in the view port
+function isElementInViewport(section) {
+  var element = section.getBoundingClientRect();
   return (
     element.top >= 0 &&
     element.left >= 0 &&
@@ -120,8 +99,7 @@ function isElementInViewport(el) {
  */
 
 // Build menu
-// Scroll to section on link click
 buildNavigationMenu();
 
 // Set sections as active
-setActiveOnScroll();
+setActive();

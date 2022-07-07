@@ -49,15 +49,16 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-  // Navigation disappears until scroll up (comment out to disable)
-  /*function toggleNav() {
+  // Navigation disappears until scroll up 
+  /******** comment out toggleNav function invocation to disable ******* */
+  function toggleNav() {
     let scrolling;
     head.style.cssText = "opacity: 1; transition: ease 0.3s";
     window.clearTimeout(scrolling);
     scrolling = setTimeout(function () {
       head.style.cssText = "opacity: 0; transition: ease 0.3s";
     }, 3000);
-  }*/
+  }
 
   window.addEventListener("scroll", (event) => {
     event.preventDefault();
@@ -71,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
     '<div id="goTop" ></div>'
   );
   document.getElementById("goTop").addEventListener("click", function () {
-    upBtn.window.scrollTo({
+    window.scrollTo({
       top: 0,
       behavior: "smooth",
     });

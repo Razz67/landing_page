@@ -240,13 +240,13 @@ section.your-active-class .landing__container::after {
     border: 1.2em solid transparent;
     border-bottom-color: rgb(36, 238, 70);
     cursor: pointer;
-    animation-name: ping;
+    /* animation-name: ping;
     animation-duration: 0.5s;
     animation-iteration-count: infinite;
     animation-direction: alternate;
     animation-fill-mode: backwards;
     animation-timing-function: ease-out;
-    transition: ease 0.5s;
+    transition: ease 0.5s; */
 }
 
 

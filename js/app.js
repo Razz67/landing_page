@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
-  // Navigation disappears until scroll up 
+  // Navigation disappears until scroll up
   /******** comment out toggleNav function invocation to disable ******* */
   function toggleNav() {
     let scrolling;

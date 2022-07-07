@@ -1,105 +1,80 @@
-/* Global Variables */
-const navList = document.getElementById("navbar__list");
-const sections = document.getElementsByTagName("section");
-/**
- * End Global Variables
- * Begin Main Functions * */
+// Wait for Dom to load before executing JS
+document.addEventListener("DOMContentLoaded", () => {
+  // Global Variables
+  const sections = document.querySelectorAll("section");
+  const head = document.querySelector(".page__header");
+  const nav = document.querySelector(".navbar__menu");
+  const navList = document.querySelector("#navbar__list");
+  const footer = document.querySelector("footer");
+  const dom = document.createDocumentFragment();
 
-// build the nav
-function buildNavigationMenu() {
-  var listItem = document.createElement("li");
+  // Create Navigation Bar
+  for (const section of sections) {
+    const navItems = document.createElement("li");
+    const navLinks = document.createElement("a");
+    navLinks.textContent = section.dataset.nav;
+    navLinks.classList.add("menu__link");
+    navLinks.href = `#${section.id}`;
+    navItems.append(navLinks);
+    navList.appendChild(navItems);
+    dom.append(navList);
 
-  // build a li element for "Header"
-  listItem.innerText = "Home";
-  listItem.className = "navbarItem";
-
-  // Add class 'active' to section when near top of viewport;
-  listItem.addEventListener("click", function () {
-    document.documentElement.scrollTop = 0;
-  });
-  navList.appendChild(listItem);
-
-  //build a li element for each section
-  for (let item of sections) {
-    listItem = document.createElement("li");
-    listItem.className = "navbarItem";
-    listItem.innerText = item.dataset.nav;
-
-    // Scroll to anchor ID using scrollIntoView event
-    listItem.addEventListener("click", function () {
-      item.scrollIntoView({
+    // Initiate Smooth Scroll
+    navLinks.addEventListener("click", (e) => {
+      e.preventDefault();
+      const activeSection = document.getElementById(
+        e.target.getAttribute("href").substring(1)
+      );
+      activeSection.scrollIntoView({
         behavior: "smooth",
+        block: "center",
       });
     });
-    navList.appendChild(listItem);
   }
-}
 
-function setActive() {
-  let activeSection = sections[0];
-  let hero = document.querySelector(".main__hero");
-  let liList = document.querySelectorAll("li");
+  // Append the finished section to the Nav Bar.
+  nav.appendChild(dom);
 
-  window.addEventListener("scroll", function (event) {
-    if (isElementInViewport(hero)) {
-      for (let liItem of liList) {
-        if (liItem.innerText === "Home") {
-          liItem.classList.add("li_item_active");
-        } else {
-          if (liItem.classList.contains("li_item_active")) {
-            liItem.classList.remove("li_item_active");
-          }
-        }
+  // Add Active Class
+  function sectionActive() {
+    const activeNav = document.querySelectorAll(".menu__link");
+    sections.forEach((section, i) => {
+      const bounding = section.getBoundingClientRect();
+      if (bounding.top <= 380 && bounding.bottom >= 350) {
+        section.classList.add("your-active-class");
+        activeNav[i].classList.add("activeBtn");
+      } else {
+        section.classList.remove("your-active-class");
+        activeNav[i].classList.remove("activeBtn");
       }
-    } else {
-      //Define the active section based on
-      // the scrolling event
-      for (let item of sections) {
-        if (isElementInViewport(item)) {
-          activeSection = item;
-          item.classList.add("your-active-class");
-        } else {
-          if (item.classList.contains("your-active-class")) {
-            item.classList.remove("your-active-class");
-          }
-        }
-      }
+    });
+  }
+  // Navigation disappears until scroll up 
+  /******** comment out toggleNav function invocation to disable ******* */
+  function toggleNav() {
+    let scrolling;
+    head.style.cssText = "opacity: 1; transition: ease 0.3s";
+    window.clearTimeout(scrolling);
+    scrolling = setTimeout(function () {
+      head.style.cssText = "opacity: 0; transition: ease 0.3s";
+    }, 3000);
+  }
 
-      //Based on the active scetion
-      //Select the appropiate link as active
-
-      for (let liItem of liList) {
-        if (liItem.innerText === activeSection.dataset.nav) {
-          liItem.classList.add("li_item_active");
-        } else {
-          if (liItem.classList.contains("li_item_active")) {
-            liItem.classList.remove("li_item_active");
-          }
-        }
-      }
-    }
+  window.addEventListener("scroll", (event) => {
+    event.preventDefault();
+    sectionActive();
+    // toggleNav();
   });
-}
 
-//check if the section is in the view port
-function isElementInViewport(section) {
-  var element = section.getBoundingClientRect();
-  return (
-    element.top >= 0 &&
-    element.left >= 0 &&
-    element.bottom <=
-      (window.innerHeight || document.documentElement.clientHeight) &&
-    element.right <= (window.innerWidth || document.documentElement.clientWidth)
+  // To Top Arrow
+  const upBtn = footer.insertAdjacentHTML(
+    "beforebegin",
+    '<div id="goTop" ></div>'
   );
-}
-/**
- * End Main Functions
- * Begin Events
- *
- */
-
-// Build menu
-buildNavigationMenu();
-
-// Set sections as active
-setActive();
+  document.getElementById("goTop").addEventListener("click", function () {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+});
